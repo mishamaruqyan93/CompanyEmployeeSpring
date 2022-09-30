@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Add user page</title>
+</head>
+<body>
+<form action="/users/add" method="post">
+    <form action="/company/add" method="post">
+        <input type="text" name="name" placeholder="please input name"/><br>
+        <input type="text" name="surname" placeholder="please input surname"/><br>
+        <input type="email" name="email" placeholder="Please input email"><br>
+        <input type="password" name="password" placeholder="Please input password"><br>
+       <select name="role">
+           <option value="ADMIN">Admin</option>
+           <option value="USER">User</option>
+       </select>
+        <input type="submit" value="Add User">
+    </form>
+</form>
+</body>
+</html>
