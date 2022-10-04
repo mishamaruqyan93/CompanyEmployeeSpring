@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Register page</title>
+</head>
+<body>
+<form action="/register" method="post">
+    <input type="text" name="name" placeholder="Please input name"><br>
+    <input type="text" name="surname" placeholder="Please input surname"><br>
+    <input type="email" name="email" placeholder="Please input email"><br>
+    <span style="color: red" th:if="${errorMassageEmail != null}" th:text="${errorMassageEmail}"></span>
+    <input type="password" name="password" placeholder="Please input password"><br>
+    <button>Submit</button>
+</form>
+</body>
+</html>

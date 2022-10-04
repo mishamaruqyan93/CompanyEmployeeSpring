@@ -11,13 +11,11 @@
     <input type="email" name="email" placeholder="please input email"/><br>
     <input type="text" name="phoneNumber" placeholder="please input phoneNumber"/><br>
     <input type="number" name="salary" placeholder="please input salary"/><br>
-
     <select name="position">
         <option value="RELATIONSHIP_MANAGER"> RELATIONSHIP MANAGER</option>
         <option value="TEAM_LEAD"> TEAM LEAD</option>
         <option value="DEVELOPER"> DEVELOPER</option>
     </select><br>
-
     <select name="company.id">
         <option th:each="company: ${companies}"
                 th:text="${company.name}" th:value="${company.id}">

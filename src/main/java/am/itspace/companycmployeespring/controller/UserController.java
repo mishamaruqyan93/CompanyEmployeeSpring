@@ -1,6 +1,5 @@
 package am.itspace.companycmployeespring.controller;
 
-import am.itspace.companycmployeespring.entity.Company;
 import am.itspace.companycmployeespring.entity.User;
 import am.itspace.companycmployeespring.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -36,9 +36,11 @@ public class UserController {
 
     @PostMapping("/users/add")
     public String add(@ModelAttribute User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-
+        Optional<User> byEmail = userRepository.findByEmail(user.getEmail());
+        if (!byEmail.isPresent()) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            userRepository.save(user);
+        }
         return "redirect:/users";
     }
 

@@ -21,7 +21,9 @@
         <td th:text="${user.getRole().name()}"></td>
         <td><a th:href="@{/users/delete(id=${user.id})}">Delete</a></td>
     </tr>
-    <a href="/users/add">Add User</a>
+    <a href="/users/add">Add User</a><br>br>
+    Want to go to the page ? <a href="/company">Company page</a><br>
+    Want to go to the page ? <a href="/employee">Employees page</a><br><br>
 </table>
 </body>
 </html>

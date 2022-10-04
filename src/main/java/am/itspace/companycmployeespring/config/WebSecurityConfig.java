@@ -21,6 +21,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .formLogin()
+                .loginPage("/loginPage")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/loginSuccess")
+                .failureUrl("/loginPage?error=true")
                 .and()
                 .logout()
                 .logoutSuccessUrl("/")
@@ -30,8 +34,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/company/delete").hasAnyAuthority(Role.ADMIN.name())
                 .antMatchers("/employee/add").hasAnyAuthority(Role.ADMIN.name())
                 .antMatchers("/employee/delete").hasAnyAuthority(Role.ADMIN.name())
+                .antMatchers("/users/add").hasAnyAuthority(Role.ADMIN.name())
+                .antMatchers("/users/delete").hasAnyAuthority(Role.ADMIN.name())
                 .anyRequest()
-                .permitAll();
+                .permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/accessDenied");
     }
 
     @Override
