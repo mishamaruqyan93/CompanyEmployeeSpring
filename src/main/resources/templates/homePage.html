@@ -5,8 +5,12 @@
     <title>Home Page</title>
 </head>
 <body>
-<a href="/employee">Employee</a> |
-<a href="/users">Users</a> |
-<a href="/company" >Companies</a> |
+<div>
+    <a href="?lang=hy">Հայերեն</a> | <a href="?lang=ru">Русский</a> | <a
+        href="?lang=en">English</a><br><br>
+</div>
+<a href="/employee"><span th:text="#{menu.Employee}"></span></a> |
+<a href="/users"><span th:text="#{menu.Users}"></span></a> |
+<a href="/company"><span th:text="#{menu.Company}"></span></a> |
 </body>
 </html>

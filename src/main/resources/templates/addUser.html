@@ -9,12 +9,13 @@
     <form action="/company/add" method="post">
         <input type="text" name="name" placeholder="please input name"/><br>
         <input type="text" name="surname" placeholder="please input surname"/><br>
-        <input type="email" name="email" placeholder="Please input email"><br>
+        <input type="email" name="email" placeholder="Please input email" th:if="errorMassageEmail != null">
+        <span style="color: red" th:text="${errorMassageEmail}"></span><br>
         <input type="password" name="password" placeholder="Please input password"><br>
-       <select name="role">
-           <option value="ADMIN">Admin</option>
-           <option value="USER">User</option>
-       </select>
+        <select name="role">
+            <option value="ADMIN">Admin</option>
+            <option value="USER">User</option>
+        </select>
         <input type="submit" value="Add User">
     </form>
 </form>

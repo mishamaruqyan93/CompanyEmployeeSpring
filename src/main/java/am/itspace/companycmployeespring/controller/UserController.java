@@ -1,9 +1,8 @@
 package am.itspace.companycmployeespring.controller;
 
 import am.itspace.companycmployeespring.entity.User;
-import am.itspace.companycmployeespring.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import am.itspace.companycmployeespring.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,16 +14,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequiredArgsConstructor
 public class UserController {
-
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final UserService userService;
 
     @GetMapping("/users")
     public String users(ModelMap modelMap) {
-        List<User> usersList = userRepository.findAll();
+        List<User> usersList = userService.findAllUsers();
         modelMap.addAttribute("users", usersList);
         return "users";
     }
@@ -35,18 +31,19 @@ public class UserController {
     }
 
     @PostMapping("/users/add")
-    public String add(@ModelAttribute User user) {
-        Optional<User> byEmail = userRepository.findByEmail(user.getEmail());
-        if (!byEmail.isPresent()) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            userRepository.save(user);
+    public String add(@ModelAttribute User user, ModelMap modelMap) {
+        Optional<User> byUserEmail = userService.findByUserEmail(user.getEmail());
+        if (byUserEmail.isPresent()) {
+            modelMap.addAttribute("errorMassageEmail", "Email already in use");
+            return "addUser";
         }
+        userService.saveUser(user);
         return "redirect:/users";
     }
 
     @GetMapping("/users/delete")
     public String deleteUser(@RequestParam("id") int id) {
-        userRepository.deleteById(id);
+        userService.userDelete(id);
         return "redirect:/users";
     }
 }

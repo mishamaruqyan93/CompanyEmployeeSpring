@@ -31,7 +31,6 @@ public class RegisterController {
         Optional<User> byEmail = userRepository.findByEmail(user.getEmail());
         if (byEmail.isPresent()) {
             modelMap.addAttribute("errorMassageEmail", "Email already in use, try a different email address");
-            return "redirect:/register";
         }
         user.setRole(Role.USER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));

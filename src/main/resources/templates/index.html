@@ -5,7 +5,11 @@
     <title>Companies page</title>
 </head>
 <body>
-<a style="color: chocolate" href="/register">Register</a>|
-<a style="color: chocolate" href="/loginPage">Login</a>|
+<div>
+    <a href="?lang=hy">Հայերեն</a> | <a href="?lang=ru">Русский</a> | <a
+        href="?lang=en">English</a><br><br>
+</div>
+<a style="color: chocolate" href="/register"><span th:text="#{menu.Register}"></span> </a>
+<a style="color: chocolate" href="loginPage"> <span th:text="#{menu.Login}"></span></a>
 </body>
 </html>

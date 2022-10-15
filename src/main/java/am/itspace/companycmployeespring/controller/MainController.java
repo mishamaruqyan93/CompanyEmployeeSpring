@@ -1,9 +1,5 @@
 package am.itspace.companycmployeespring.controller;
 
-import am.itspace.companycmployeespring.entity.Role;
-import am.itspace.companycmployeespring.entity.User;
-import am.itspace.companycmployeespring.sequrity.CurrentUser;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;

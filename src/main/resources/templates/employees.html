@@ -5,6 +5,9 @@
     <title>Employees page</title>
 </head>
 <body>
+<a style="color: grey" href="/employee/add">Add Employee</a><br><br>
+Want to go to the page ? <a style="color: aqua" href="/users">Users page</a><br>
+Want to go to the page ? <a style="color: aqua" href="/company">Company page</a><br><br>
 <table border="1">
     <tr>
     <tr>
@@ -19,7 +22,7 @@
         <th>profile_pic</th>
         <th>action</th>
     </tr>
-    <tr th:each="employee:${employees}">
+    <tr th:each="employee:${employees.content}">
         <td th:text="${employee.id}"></td>
         <td th:text="${employee.name}"></td>
         <td th:text="${employee.surname}"></td>
@@ -28,14 +31,19 @@
         <td th:text="${employee.salary}"></td>
         <td th:text="${employee.position}"></td>
         <td th:text="${employee.getCompany().getName()}"></td>
-        <td >
+        <td>
             <img style="width: 50px; height: 50px" th:if="${employee.profilePic != null}"
                  th:src="@{/employees/getImage(fileName=${employee.profilePic})}">
             <img style="width: 50px; height: 50px" th:if="${employee.profilePic == null}" src="/images/avatarPic.jpg">
         </td>
         <td><a th:href="@{/employee/delete(id=${employee.id})}">Delete</a></td>
     </tr>
-    <a href="/employee/add">Add Employee</a>
 </table>
+<div th:if="${employees.totalPages > 0}" class="pagination"
+     th:each="pageNumber : ${pageNumbers}">
+    <a th:href="@{/employee(page=${pageNumber})}"
+       th:text="${pageNumber}"
+       th:class="${pageNumber==employees.number + 1} ? active"></a>
+</div>
 </body>
 </html>

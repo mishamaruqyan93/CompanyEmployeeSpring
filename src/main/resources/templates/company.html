@@ -5,6 +5,9 @@
     <title>Company page</title>
 </head>
 <body>
+<a style="color: chocolate" href="/company/add">Add Company</a><br><br>
+Want to go to the page ? <a style="color: gray" href="/users">Users page</a><br>
+Want to go to the page ? <a style="color: grey" href="/employee">Employees page</a><br><br>
 <table border="1">
     <tr>
     <tr>
@@ -14,16 +17,19 @@
         <th>address</th>
         <th>actions</th>
     </tr>
-    <tr th:each="company:${company}">
+    <tr th:each="company:${company.content}">
         <td th:text="${company.id}"></td>
         <td th:text="${company.name}"></td>
         <td th:text="${company.size}"></td>
         <td th:text="${company.address}"></td>
         <td><a th:href="@{/company/delete(id=${company.id})}">Delete</a></td>
     </tr>
-    <a href="/company/add">Add Company</a><br><br>
-    Want to go to the page ? <a href="/users">Users page</a><br>
-    Want to go to the page ? <a href="/employee">Employees page</a><br><br>
 </table>
+<div th:if="${company.totalPages > 0}" class="pagination"
+     th:each="pageNumber : ${pageNumbers}">
+    <a th:href="@{/company(size=${company.size}, page=${pageNumber})}"
+       th:text="${pageNumber}"
+       th:class="${pageNumber==company.number + 1} ? active"></a>
+</div>
 </body>
 </html>
